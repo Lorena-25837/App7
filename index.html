@@ -24,10 +24,10 @@
   http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
   
   Brief Description of Goal of Code:
-  blah, blah, blah,
+  App that allows users to upload a photo while scanning for blue pixels.
  
   Known Issues:
-  blah, blah, blah, blah
+  N/A
 -->
 
  <head>
@@ -95,14 +95,25 @@
         img.onload = function() {
           /*This finally draws the image onto the first drawing canvas. The specific canvas is referred to by "context". This is established down in the HTML part of the file just under the first <canvas> tag. If we weren't worried about fixing an iPhone bug we would use context.drawImage(image, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500) instead of drawImageIOSFix */
         
-          drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
+         drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
 
           /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-          /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
-          
-          
+         const imgData = context.getImageData(0, 0, 600, 500);
+         //Get RGB Data from Image
+         for (let i = 0; i < imgData.data.length; i += 4) { 
+		         let red = imgData.data[i]; //Variable for Red
+	         	let green = imgData.data[i + 1]; //Variable for Green
+         		let blue = imgData.data [i + 2]; //Variable for Blue   
+
+	         	imgData.data[i] = 0 - red; //Removes Red
+         		imgData.data[i + 1] = 0 - green;  //Removes Green  
+         		imgData.data[i + 2] = 255 - blue; //Retain Blue
+         	}   
+	
+         context2.putImageData(imgData, 0, 0);  
+         //Blue Pixel Photo on Canvas 2
           
           
         } // end of img.onload
@@ -142,7 +153,16 @@
         context.fillStyle = "black";
         context.fillText("Original image will go here", 10, 20);
       </script>
+<canvas id="myCanvas2" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!--Create the second canvas with the same size and style as the first one-->
 
+     	<script> /* This script initiates the cavas and puts the text on the canvas "myCanvas2" */
+     		var canvas2 = document.getElementById("myCanvas2"); 
+		     var context2 = canvas2.getContext("2d"); 
+     		context2.font = "20pt Calibri"; 
+     		context2.fillStyle = "black";
+     		context2.fillText("Image with blue intensities only will be here", 10, 20); 
+     	</script>
+     
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
       <p>DIY Diagnostics</p>
