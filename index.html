@@ -14,7 +14,7 @@
  
   Authors in chronological order of contribution:
   Author 1: Timothy E. Riedel
-  Author 2: ?????????
+  Author 2: Lorena Tellez
   
   References:
   http://docs.webplatform.org/wiki/concepts/programming/drawing_images_onto_canvas#Loading_the_image_programmatically
@@ -24,7 +24,7 @@
   http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
   
   Brief Description of Goal of Code:
-  App that allows users to upload a photo while scanning for blue pixels.
+  App that allows users to upload a photo while amplifying blue pixels.
  
   Known Issues:
   N/A
@@ -138,8 +138,8 @@
     <div data-role="content">	
       <h2>Push the Button to Take a Picture!</h2>
       <div>
-        Press Orange Button to Create or Choose Image File:
-        <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
+        Press Pink Button to Create or Choose Image File:
+        <input type="file" id="fileInput" STYLE="background-color: #fabef2;">
       </div>
       <div id="messageDisplayArea"></div>
       
@@ -147,7 +147,7 @@
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
         var canvas = document.getElementById('myCanvas');
         var context = canvas.getContext("2d");
-        context.font = '20pt Times New Roman';
+        context.font = '20pt Serif';
         context.fillStyle = "black";
         context.fillText("Original Image", 10, 20);
       </script>
@@ -156,9 +156,9 @@
      	<script> /* This script initiates the cavas and puts the text on the canvas "myCanvas2" */
      		var canvas2 = document.getElementById("myCanvas2"); 
 		     var context2 = canvas2.getContext("2d"); 
-     		context2.font = "20pt Times New Roman"; 
+     		context2.font = "20pt Serif"; 
      		context2.fillStyle = "black";
-     		context2.fillText("Blue-intensified Image", 10, 20); 
+     		context2.fillText("Blue-Intensified Image", 10, 20); 
      	</script>
      
     </div><!-- /content -->
